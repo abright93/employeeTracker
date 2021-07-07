@@ -1,25 +1,19 @@
 {
-    "name": "",
-    "version": "1.0.0",
-    "description": "",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": ""
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": ""
-    },
-    "homepage": "",
-    "dependencies": {
-      "console.table": "^0.10.0",
-      "init": "^0.1.2",
-      "inquirer": "^7.0.4",
-      "mysql": "^2.18.1"
-    }
-  }
-  
+  "name": "employeetracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abright93/employeeTracker.git"
+  },
+  "author": "Alexandra Bright",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abright93/employeeTracker/issues"
+  },
+  "homepage": "https://github.com/abright93/employeeTracker#readme"
+}
