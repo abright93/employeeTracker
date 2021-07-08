@@ -2,7 +2,8 @@
 
 
 
-(https://user-images.githubusercontent.com/84680936/124861320-5254da80-df81-11eb-93e8-b157dece67c5.gif)
+[employee-tracker](https://user-images.githubusercontent.com/84680936/124861371-70bad600-df81-11eb-96a2-4023c5086ebd.gif)
+
 
 
 # Description
