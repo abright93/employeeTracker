@@ -10,6 +10,7 @@ const connection = mysql.createConnection({
     database: 'employeetracker'
 });
 
+
 const promptMessages = {
     viewAllEmployees: "View All Employees",
     viewByDepartment: "View All Employees By Department",
@@ -21,9 +22,9 @@ const promptMessages = {
     viewAllRoles: "View All Roles",
     exit: "Exit"
 };
-const startApp = () => {
-    inquirer
-        .prompt({
+
+function startPrompt() { 
+    inquirer.prompt({
             name: 'action',
             type: 'list',
             message: 'What would you like to do?',
@@ -38,7 +39,7 @@ const startApp = () => {
                 promptMessages.exit
             ]
         })
-        .then(answer => {
+        .then((answer) => {
             console.log('answer', answer);
             switch (answer.action) {
                 case promptMessages.viewAllEmployees:
@@ -89,7 +90,7 @@ function viewAllEmployees() {
         console.log('VIEW ALL EMPLOYEES');
         console.log('\n');
         console.table(res);
-        prompt();
+        startPrompt();
     });
 }
 
@@ -105,7 +106,7 @@ function viewByDepartment() {
         console.log('VIEW EMPLOYEE BY DEPARTMENT');
         console.log('\n');
         console.table(res);
-        prompt();
+        startPrompt();
     });
 }
 
@@ -123,7 +124,7 @@ function viewByManager() {
         console.log('VIEW EMPLOYEE BY MANAGER');
         console.log('\n');
         console.table(res);
-        prompt();
+        startPrompt();
     });
 }
 
@@ -139,7 +140,7 @@ function viewAllRoles() {
         console.log('VIEW EMPLOYEE BY ROLE');
         console.log('\n');
         console.table(res);
-        prompt();
+        startPrompt();
     });
 
 }
@@ -191,7 +192,7 @@ async function addEmployee() {
                     }
                 }
             }
-            console.log('Employee has been added. Please view all employee to verify...');
+            console.log('Employee has been added!');
             connection.query(
                 'INSERT INTO employee SET ?',
                 {
@@ -202,7 +203,7 @@ async function addEmployee() {
                 },
                 (err, res) => {
                     if (err) throw err;
-                    prompt();
+                    startPrompt();
 
                 }
             );
@@ -213,7 +214,7 @@ async function addEmployee() {
 function remove(input) {
     const promptQ = {
         yes: "yes",
-        no: "no I don't (view all employees on the main option)"
+        no: "no"
     };
     inquirer.prompt([
         {
@@ -252,7 +253,7 @@ async function removeEmployee() {
         }
     )
     console.log('Employee has been removed on the system!');
-    prompt();
+    startPrompt();
 
 };
 
@@ -292,7 +293,7 @@ async function updateRole() {
         WHERE employee.id = ${employeeId.name}`, async (err, res) => {
             if (err) throw err;
             console.log('Role has been updated..')
-            prompt();
+            startPrompt();
         });
     });
 }
@@ -312,8 +313,7 @@ function askName() {
     ]);
 }
 
-
 connection.connect(err => {
     if (err) throw err;
-    startApp();
+    startPrompt();
 });
