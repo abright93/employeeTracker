@@ -2,7 +2,7 @@
 
 
 
-employee-tracker.gif![employee-tracker](https://user-images.githubusercontent.com/84680936/124861320-5254da80-df81-11eb-93e8-b157dece67c5.gif)
+(https://user-images.githubusercontent.com/84680936/124861320-5254da80-df81-11eb-93e8-b157dece67c5.gif)
 
 
 # Description
