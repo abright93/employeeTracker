@@ -1,6 +1,9 @@
-DROP DATABASE IF EXISTS employees;
-CREATE DATABASE employees;
-USE employees;
+DROP DATABASE IF EXISTS employeetracker;
+
+CREATE DATABASE employeetracker;
+
+USE employeetracker;
+
 CREATE TABLE department (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) UNIQUE NOT NULL
@@ -24,34 +27,3 @@ CREATE TABLE employee (
   INDEX man_ind (manager_id),
   CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL
 );
-use employees;
-INSERT INTO department
-    (name)
-VALUES
-    ('Operations'),
-    ('Analystics'),
-    ('Marketing'),
-    ('Executive');
-INSERT INTO role
-    (title, salary, department_id)
-VALUES
-    ('General Manager', 11000000, 1),
-    ('Coach', 4000000, 1),
-    ('Team Lead Analyst', 15000000, 2),
-    ('Team Analyst', 8000000, 2),
-    ('Media Manager', 7000000, 3),
-    ('Media Specialist', 3000000, 3),
-    ('CEO', 45000000, 4),
-    ('CEO Assistant', 25000000, 4);
-INSERT INTO employee
-    (first_name, last_name, role_id, manager_id)
-VALUES
-    ('Jon', 'Snow', 1, NULL),
-    ('Aarya', 'Stark', 2, 1),
-    ('Cersei', 'Lannister', 3, NULL),
-    ('Margaery', 'Tyrell', 4, 3),
-    ('Stannis', 'Baratheon', 5, NULL),
-    ('Daenerys', 'Targaryen', 6, 5),
-    ('Sandor', 'Clegane', 7, NULL),
-    ('Theon', 'Greyjoy', 8, 7);
-    

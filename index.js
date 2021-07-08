@@ -2,7 +2,13 @@ const mysql = require('mysql');
 const inquirer = require('inquirer');
 require('console.table');
 
-
+const connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'Lem0n!23',
+    database: 'employeetracker'
+});
 
 const promptMessages = {
     viewAllEmployees: "View All Employees",
@@ -15,27 +21,7 @@ const promptMessages = {
     viewAllRoles: "View All Roles",
     exit: "Exit"
 };
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-
-    
-    port: 3306,
-
-    
-    user: 'root',
-
-   
-    password: 'Lem0n!23',
-    database: 'employeetracker'
-});
-
-connection.connect(err => {
-    if (err) throw err;
-    prompt();
-});
-
-function prompt() {
+const startApp = () => {
     inquirer
         .prompt({
             name: 'action',
@@ -227,14 +213,14 @@ async function addEmployee() {
 function remove(input) {
     const promptQ = {
         yes: "yes",
-        no: "no"
+        no: "no I don't (view all employees on the main option)"
     };
     inquirer.prompt([
         {
             name: "action",
             type: "list",
-            message: "In order to proceed an employee, an ID number must be entered. View all employees to get" +
-                " the employee ID. Do you know the employee ID number?",
+            message: "In order to proceed an employee, an ID must be entered. View all employees to get" +
+                " the employee ID. Do you know the employee ID?",
             choices: [promptQ.yes, promptQ.no]
         }
     ]).then(answer => {
@@ -265,7 +251,7 @@ async function removeEmployee() {
             if (err) throw err;
         }
     )
-    console.log('Employee has been removed!');
+    console.log('Employee has been removed on the system!');
     prompt();
 
 };
@@ -275,7 +261,7 @@ function askId() {
         {
             name: "name",
             type: "input",
-            message: "What is the employee ID?:  "
+            message: "What is the employe ID?:  "
         }
     ]);
 }
@@ -305,7 +291,7 @@ async function updateRole() {
         SET role_id = ${roleId}
         WHERE employee.id = ${employeeId.name}`, async (err, res) => {
             if (err) throw err;
-            console.log('Role has been updated!')
+            console.log('Role has been updated..')
             prompt();
         });
     });
@@ -325,3 +311,9 @@ function askName() {
         }
     ]);
 }
+
+
+connection.connect(err => {
+    if (err) throw err;
+    startApp();
+});
